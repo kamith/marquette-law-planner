@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Plan a Marquette Law Spring 2027 schedule: every class, finals, professor ratings, calendar and plan comparison. Works offline."></head><body><title>Spring 2027 Law Planner</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Plan a Marquette Law Spring 2027 schedule: every class, finals, professor ratings, calendar and plan comparison. Works offline."></head><body><title>Spring 2027 Law Planner</title>
 <style>
 #rv-run, #rv-stop, #rv-avail, #rv-ai, #g-ai, .field:has(#g-text), .field:has(#g-pool), .row-short { display: none !important; }
 #g-local { background: var(--navy); border-color: var(--navy); color: #fff; font-weight: 600; }
@@ -72,7 +72,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .btn:disabled { opacity: .5; cursor: default; }
 
 /* ---------- main split */
-.main { display: grid; grid-template-columns: minmax(380px, 32%) 1fr; min-height: 0; }
+.main { display: grid; grid-template-columns: minmax(380px, 32%) minmax(0, 1fr); min-height: 0; }
 .pane-list { display: grid; grid-template-rows: auto auto 1fr; min-height: 0; border-right: 1px solid var(--line); }
 .filters { padding: 20px 28px 8px 0; display: grid; gap: 14px; }
 .search { position: relative; }
@@ -143,7 +143,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .empty b { display: block; color: var(--ink-2); font-size: 15px; margin-bottom: 4px; }
 
 /* ---------- calendar pane */
-.pane-cal { display: grid; grid-template-rows: auto 1fr; min-height: 0; min-width: 0; }
+.pane-cal { display: grid; grid-template-rows: auto 1fr; grid-template-columns: minmax(0, 1fr); min-height: 0; min-width: 0; }
 .caltool { min-height: 72px; display: flex; align-items: center; gap: 14px; padding: 12px 0 12px 28px; border-bottom: 1px solid var(--line); }
 .caltool > :not(.legend) { flex: none; }
 .navs { display: flex; gap: 2px; }
@@ -153,7 +153,8 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .icon-btn svg { width: 18px; height: 18px; }
 .ctitle { font-size: 22px; font-weight: 600; margin: 0 0 0 6px; white-space: nowrap; letter-spacing: -.01em; }
 .csub { font-size: 14px; color: var(--ink-3); white-space: nowrap; }
-.legend { display: flex; align-items: center; gap: 2px 16px; margin-left: auto; flex-wrap: wrap; justify-content: flex-end; min-width: 0; flex: 1 1 auto; }
+.legend { display: flex; align-items: center; gap: 2px 16px; margin-left: auto; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; justify-content: flex-start; min-width: 0; flex: 1 1 auto; }
+.legend > * { flex: none; }
 .lg { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-2); white-space: nowrap; border: 0; background: none; padding: 4px 2px; border-radius: 6px; }
 .lg i { width: 10px; height: 10px; border-radius: 3px; background: var(--c); flex: none; }
 .lg .x { width: 18px; height: 18px; border-radius: 4px; display: grid; place-items: center; color: var(--ink-4); }
@@ -353,7 +354,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
 @media (prefers-reduced-motion: reduce) { .spin { animation: none; } * { transition: none !important; } }
 .foot-note { font-size: 12.5px; color: var(--ink-4); margin: 0; }
 
-.toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 10px; font-size: 14px; z-index: 60; box-shadow: 0 8px 24px rgba(0, 0, 0, .2); }
+.toast { pointer-events: none; position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 10px; font-size: 14px; z-index: 60; box-shadow: 0 8px 24px rgba(0, 0, 0, .2); }
 
 /* ---------- review chat */
 .chat-log { display: grid; gap: 10px; }
@@ -396,6 +397,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .tag.taken { background: #f3e8e8; color: var(--bad-ink); }
 .taken { display: grid; gap: 4px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
 .rv-form > *, .field { min-width: 0; }
+.field { grid-template-columns: minmax(0, 1fr); }
 .tk-row { display: grid; grid-template-columns: 70px minmax(0, 1fr) auto auto; gap: 8px; align-items: center; font-size: 13px; padding: 3px 0; }
 .tk-code { font-weight: 600; color: var(--navy); font-size: 12px; }
 .tk-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -404,7 +406,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .tk-add { display: flex; gap: 6px; align-items: center; }
 .tk-add input:not([type=file]) { flex: 1; min-width: 0; }
 .tk-add select { width: 120px; padding: 8px; }
-.tk-add input[type=file] { flex: 1; font-size: 12.5px; padding: 6px; }
+.tk-add input[type=file] { flex: 1; min-width: 0; max-width: 100%; font-size: 12.5px; padding: 6px; }
 .tk-paste summary { font-size: 13px; color: var(--navy); font-weight: 500; cursor: pointer; }
 .tk-paste textarea { width: 100%; margin: 8px 0 6px; min-height: 90px; border: 1px solid #d7dbe1; border-radius: 8px; padding: 8px 10px; font-size: 13.5px; }
 
@@ -414,7 +416,8 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .seg.plans button[aria-pressed="true"] .pc-n { background: var(--navy); color: #fff; }
 .review.cmp { width: min(3300px, 100%); }
 .cmp-grid { display: grid; gap: 20px; padding: 20px 28px 24px; min-height: 0; overflow-x: auto; }
-.seg.plans { flex-wrap: wrap; max-width: 46vw; }
+.seg.plans { flex-wrap: nowrap; max-width: 40vw; overflow-x: auto; scrollbar-width: thin; }
+.seg.plans button { flex: none; }
 #del-plan { color: var(--bad); }
 .cmp-col { display: grid; grid-template-rows: auto auto 1fr auto; gap: 14px; min-height: 0; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
 .cmp-col.cur { border-color: var(--navy-b); box-shadow: 0 0 0 1px var(--navy-b); }
@@ -439,24 +442,255 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .cmp-row span:nth-of-type(2) { margin-left: auto; }
 .cmp-row.bad { color: var(--bad); font-weight: 500; }
 
-/* ---------- narrow screens: stack and let the page scroll */
+/* ---------- desktop pieces that only exist for phones */
+.search-row { display: flex; gap: 8px; align-items: center; }
+.search-row .search { flex: 1; min-width: 0; }
+.filters-btn, .mnav, .fsheet-h, .fsheet-f, .fscrim, .sheet-scrim .more-sheet .grab { display: none; }
+.fsheet { display: contents; }
+.fcount { min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--navy); color: #fff; font-size: 12px; display: inline-grid; place-items: center; }
+
+/* ---------- phones and small tablets (patterns from Google Calendar and shopping-app filter sheets) */
 @media (max-width: 900px) {
-  body { overflow: auto; }
-  .app { height: auto; }
-  .top { flex-wrap: wrap; gap: 12px; }
-  .termsel { margin-left: 0; }
-  .stats { margin-left: 0; }
-  .main { grid-template-columns: 1fr; }
-  .pane-list { border-right: 0; height: 75vh; }
-  .filters, .listhead, .list-scroll { padding-right: 0; }
-  .pane-cal { height: 90vh; }
-  .caltool { padding-left: 0; flex-wrap: wrap; }
-  .legend { margin-left: 0; justify-content: flex-start; }
-  .mbody, .rv-body, .rv-grid, .pc, .cmp-grid { grid-template-columns: 1fr !important; }
+  :root { --mnav-h: 62px; }
+  html, body { height: 100%; }
+  body { overflow: hidden; font-size: 15px; }
+  input, select, textarea, .search input { font-size: 16px !important; }
+  .app { height: 100%; grid-template-rows: auto 1fr; padding-left: 0; padding-right: 0; }
+  .top { flex-wrap: wrap; gap: 8px 10px; padding: 10px max(14px, env(safe-area-inset-left, 0px)) 8px max(14px, env(safe-area-inset-right, 0px)); min-height: 0; }
+  .logo { width: 32px; height: 32px; font-size: 16px; }
+  .bname { font-size: 16px; }
+  .bname span { font-size: 11.5px; }
+  .termsel, #dup-plan, #compare-btn, #gen-btn, #copy-reg, #clear-all, #ai-btn { display: none !important; }
+  .seg.plans#plans { order: 3; flex: 1 0 100%; max-width: none; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 3px; }
+  .seg.plans#plans::-webkit-scrollbar { display: none; }
+  .seg.plans#plans button { flex: none; height: 40px; }
+  .seg button, .seg.view button { height: 40px; }
+  #sort, .select { height: 40px; }
+  .btn.sm, .other, #tk-add, .cohorts .btn { min-height: 44px; }
+  .tk-x { width: 40px; height: 40px; }
+  .cmp-name { height: 40px; }
+  .plinks a, .lh-right .link, #clear-filters { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; }
+  #g-count button { min-width: 56px; height: 44px; }
+  #g-pool button { height: 44px; }
+  .rv-form input[type=checkbox], #gen-form input[type=checkbox] { flex: none; }
+  .list-scroll { scroll-padding-top: 40px; }
+  .ev.clash .et { font-size: 11.5px; overflow-wrap: normal; word-break: normal; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .ev .et { overflow-wrap: normal; }
+  .ev.clash .cbadge { display: none; }
+  .ev.clash { padding: 5px 6px; }
+  .ev.exam .et::before { content: "Final"; }
+  #del-plan { display: none !important; }
+  #f-short { max-width: none; flex-wrap: nowrap; }
+  #f-short button { height: 40px; }
+  .stats { order: 2; margin-left: auto; gap: 6px; flex-wrap: nowrap; }
+  .stat { font-size: 12.5px; }
+  .stat .num { font-size: 18px; margin-right: 4px; }
+  .stat { font-size: 0; white-space: nowrap; }
+  .stat .dotsep, .stat .num2 { display: none; }
+  .stat .num::after { content: " credits"; font-size: 12.5px; font-weight: 500; color: var(--ink-3); }
+  .warn { height: 30px; padding: 0 9px; font-size: 12.5px; }
+  .warn .dotsep { margin: 0 4px; }
+
+  .main { display: block; position: relative; min-height: 0; height: 100%; }
+  .pane-list, .pane-cal { position: absolute; inset: 0 0 calc(var(--mnav-h) + env(safe-area-inset-bottom, 0px)) 0; border-right: 0; }
+  body[data-mpane="list"] .pane-cal, body[data-mpane="cal"] .pane-list { display: none; }
+  .filters { padding: 10px 14px 8px; gap: 10px; }
+  .search input { height: 44px; }
+  .search kbd { display: none; }
+  .filters-btn { display: inline-flex; height: 44px; padding: 0 14px; }
+  .filters > .frow { gap: 8px; }
+  .filters > .frow .flabel { display: none; }
+  .listhead { padding: 0 14px; }
+  .tabs button { padding: 12px 0 11px; }
+  .lh-right label { display: none; }
+  .list-scroll { padding: 10px 14px 24px; -webkit-overflow-scrolling: touch; }
+  .group-h { top: -10px; }
+  .row { padding: 12px 12px 12px 14px; gap: 4px 10px; }
+  .rtitle { white-space: normal; font-size: 15.5px; line-height: 1.3; }
+  .rmeta { font-size: 13px; }
+  .rmp { margin-left: 6px; }
+  .add { height: 40px; min-width: 76px; justify-content: center; }
+  .tag { height: 24px; }
+
+  /* filter sheet */
+  .fsheet { display: none; }
+  body.filters-open .fsheet { display: grid; position: fixed; left: 0; right: 0; bottom: 0; max-height: 86dvh; z-index: 70; background: var(--bg); border-radius: 16px 16px 0 0; box-shadow: 0 -12px 40px rgba(16, 27, 45, .25); grid-template-rows: auto 1fr auto; gap: 0; overflow: hidden; }
+  body.filters-open .fsheet > .frow { margin: 0 16px; padding: 12px 0; border-bottom: 1px solid var(--line-2); display: grid; gap: 10px; }
+  body.filters-open .fsheet > .cohorts:not([hidden]) { margin: 12px 16px; padding: 12px; display: flex; }
+  .fsheet { overflow-y: auto; }
+  body.filters-open .fsheet { display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  body.filters-open .fsheet > .frow { flex: none; }
+  .fsheet .flabel { display: block !important; width: auto; font-size: 13px; color: var(--ink); }
+  .fsheet .chips { gap: 8px; }
+  .fsheet .chip { height: 40px; padding: 0 14px; font-size: 14px; }
+  .fsheet .seg button { height: 38px; padding: 0 16px; font-size: 14px; }
+  .fsheet-h { display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--bg); padding: 18px 16px 10px; z-index: 1; }
+  .fsheet-h b { font-size: 18px; }
+  .fsheet-h .link { border: 0; background: none; color: var(--navy); font-weight: 600; font-size: 15px; padding: 8px 0; }
+  .grab { position: absolute; top: 7px; left: 50%; width: 40px; height: 4px; margin-left: -20px; border-radius: 2px; background: #d5d9df; }
+  .fsheet-f { display: block; position: sticky; bottom: 0; background: var(--bg); padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); margin-top: auto; }
+  .fsheet-f .btn { width: 100%; height: 48px; font-size: 16px; }
+  .fscrim { display: block; position: fixed; inset: 0; background: rgba(16, 27, 45, .4); z-index: 65; }
+  .fscrim[hidden] { display: none !important; }
+
+  /* bottom navigation */
+  .mnav { display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--bg); border-top: 1px solid var(--line); padding: 4px max(6px, env(safe-area-inset-left, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)) max(6px, env(safe-area-inset-right, 0px)); height: calc(var(--mnav-h) + env(safe-area-inset-bottom, 0px)); }
+  .mnav button { border: 0; background: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; white-space: nowrap; font-weight: 500; color: var(--ink-3); border-radius: 10px; min-height: 48px; }
+  .mnav button svg { width: 22px; height: 22px; }
+  .mnav button[aria-pressed="true"] { color: var(--navy); }
+  .mnav button[aria-pressed="true"] svg { background: var(--navy-t); border-radius: 12px; padding: 2px 14px; width: 52px; box-sizing: content-box; height: 22px; margin: -2px 0; }
+  .mnav span { position: relative; }
+  .mbadge { position: absolute; top: -30px; right: -14px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--bad); color: #fff; font-size: 11px; display: grid; place-items: center; font-weight: 700; }
+  .mbadge { background: var(--navy); }
+
+  /* calendar */
+  .caltool { padding: 8px 14px; gap: 8px; flex-wrap: wrap; min-height: 0; }
+  .caltool #jump { order: 5; flex: 1; height: 38px; }
+  .caltool .seg.view { order: 4; }
+  .caltool .navs { order: 1; }
+  .ctitle { order: 2; font-size: 18px; margin: 0; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .csub { display: none; }
+  .legend { display: flex; order: 6; flex: 1 0 100%; margin: 0; gap: 4px 14px; }
+  .legend-empty { display: none; }
+  .lg { min-height: 32px; }
+  .icon-btn { width: 44px; height: 44px; }
+  .cal-body { overflow: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+  .cal-body .week { width: calc(48px + var(--cols) * max(170px, 46vw)); right: auto; bottom: auto; height: 1180px; }
+  .cal-body .wk-head { position: sticky; top: 0; z-index: 6; background: var(--bg); }
+  .cal-body .wk-allday { position: sticky; top: 50px; z-index: 6; background: var(--bg); }
+  .cal-body .month { position: absolute; inset: 0; }
+  .more-sheet { max-height: 100dvh; overflow-y: auto; }
+  .more-sheet { padding-top: 26px; }
+  .wk-head, .wk-allday, .wk-grid { grid-template-columns: 48px repeat(var(--cols), 1fr); }
+  .wk-head > :first-child, .wk-allday > :first-child, .wk-grid > .gut { position: sticky; left: 0; z-index: 4; background: var(--bg); }
+  .gut span { right: 6px; font-size: 10.5px; }
+  .dh { height: 50px; padding: 0 10px; gap: 6px; }
+  .dd { font-size: 20px; }
+  .dh.first .dd { width: 32px; height: 32px; font-size: 16px; }
+  .wk-allday > div { padding: 3px; min-height: 22px; }
+  .wk-allday > div:first-child { font-size: 10px; }
+  .cal-body .wk-allday { top: 50px; }
+  .kd { font-size: 11.5px; padding: 2px 6px; }
+  .ev { padding: 6px 8px; border-left-width: 3px; }
+  .et { font-size: 13px; }
+  .em { font-size: 11.5px; }
+  .em2 { display: none; }
+  .cbadge { margin-top: 4px; font-size: 10.5px; padding: 1px 5px; }
+  .ev .req-star { top: 4px; right: 4px; width: 13px; height: 13px; }
+  .ev .req-star svg { width: 13px; height: 13px; }
+  .mhead span { padding: 8px 4px; font-size: 11px; text-align: center; }
+  .mc { padding: 4px 3px; gap: 1px; align-items: center; }
+  .mtop { margin-bottom: 2px; justify-content: center; }
+  .mdn { font-size: 13px; }
+  .mc.first .mdn { width: 24px; height: 24px; margin: 0; }
+  .mhrs { display: none; }
+  .mc .kd { font-size: 9.5px; padding: 1px 3px; max-width: 100%; align-self: stretch; text-align: center; }
+  .ml { height: auto; padding: 0; gap: 0; justify-content: center; }
+  .ml .mt, .ml .mn { display: none; }
+  .mc { flex-direction: row; flex-wrap: wrap; align-content: flex-start; justify-content: center; }
+  .mc .mtop, .mc .kd { flex: 1 0 100%; }
+  .ml { width: 9px; height: 9px; margin: 1px; }
+  .ml i { width: 8px; height: 8px; }
+  .ml.exam i { box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--c); }
+  .mmore { font-size: 10px; padding: 0; flex: 1 0 100%; text-align: center; }
+
+  /* sheets and dialogs become full-screen */
+  .scrim { padding: 0; place-items: end stretch; }
+  .modal, .review, .review.cmp { width: 100%; height: 100dvh; max-height: 100dvh; border-radius: 0; }
+  .mh { padding: 14px 16px 12px; padding-top: max(14px, env(safe-area-inset-top, 0px)); gap: 10px; }
+  .mh h2 { font-size: 21px; }
+  .mcode { font-size: 12.5px; }
+  .x { width: 44px; height: 44px; }
+  .malerts { padding: 0 16px; }
+  .mbody { grid-template-columns: 1fr; gap: 18px; padding: 16px; }
+  .fr { grid-template-columns: 1fr; gap: 2px; padding: 10px 0; }
+  .pstats { gap: 18px; }
+  .big b { font-size: 32px; }
+  .pc { grid-template-columns: 1fr; }
+  .mfoot { padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); flex-wrap: wrap; }
+  .mfoot .note { flex: 1 0 100%; font-size: 12px; }
+  .mfoot .btn { flex: 1; height: 48px; }
+  .rv-head { padding: 12px 16px; padding-top: max(12px, env(safe-area-inset-top, 0px)); gap: 10px; }
+  .rv-head .logo { display: none; }
+  .rv-head h2 { font-size: 19px; }
+  .rv-head p { font-size: 12.5px; }
+  .rv-body { display: flex; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .rv-form, .rv-out { overflow: visible; padding: 16px; }
+  .rv-form, .rv-out { grid-template-columns: minmax(0, 1fr); }
+  .rv-form input[type=checkbox], .gen-form input[type=checkbox], #gen-form input[type=checkbox] { width: 20px; height: 20px; }
+  .tk-row .mut { white-space: nowrap; font-size: 12px; }
+  .tk-paste .tk-add { flex-wrap: wrap; }
+  .tk-paste .tk-add input[type=file] { flex: 1 0 100%; }
+  .tk-paste .tk-add .btn { flex: 1 0 100%; height: 44px; }
+  .rv-form { border-right: 0; border-top: 1px solid var(--line); order: 2; }
+  .rv-out { order: 1; }
   .qc-grid { grid-template-columns: 1fr 1fr; }
-  .rv-form { border-right: 0; border-bottom: 1px solid var(--line); }
-  .flabel { width: auto; }
-  .verdict { grid-template-columns: 1fr; }
+  .rv-grid { grid-template-columns: 1fr; }
+  .verdict { grid-template-columns: 1fr; gap: 10px; }
+  .meter { width: 100%; }
+  .msg { max-width: 92%; }
+  .chat-in { position: sticky; bottom: 0; background: var(--bg); padding-top: 8px; }
+  .tk-row { grid-template-columns: 64px minmax(0, 1fr) auto 32px; }
+  .tk-x { width: 32px; height: 32px; }
+  .g-row select { min-width: 0; }
+  .g-chk { min-height: 36px; }
+  .checks label { min-height: 34px; }
+  .btn.tall { width: 100%; height: 48px; }
+  .cmp-body { overflow-y: auto; }
+  .cmp-table-wrap { padding: 14px 16px 0; }
+  .cmp-table th, .cmp-table td { padding: 8px 10px; font-size: 13px; }
+  .cmp-table tr > th:first-child { position: sticky; left: 0; background: var(--bg); z-index: 1; width: auto; min-width: 130px; }
+  .cmp-table td.best { background: var(--ok-t); }
+  .cmp-grid { grid-template-columns: 1fr !important; padding: 14px 16px 24px; overflow-x: visible; }
+  .cmp-col { padding: 12px; }
+  .cmp-name { width: 100%; font-size: 16px; }
+  .cmp-h { flex-wrap: wrap; }
+  .cmp-week { height: 440px; }
+  .cmp-week .em { display: none; }
+  .cmp-lists { grid-template-columns: 1fr; max-height: none; }
+  .toast { bottom: calc(var(--mnav-h) + 16px + env(safe-area-inset-bottom, 0px)); max-width: calc(100% - 32px); }
+
+  /* more sheet */
+  .sheet-scrim { place-items: end stretch; }
+  .more-sheet { position: relative; background: var(--bg); border-radius: 16px 16px 0 0; padding: 22px 12px calc(12px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 2px; }
+  .more-sheet .grab { display: block; }
+  .more-sheet button { border: 0; background: none; text-align: left; font-size: 16px; padding: 14px 12px; border-radius: 10px; color: var(--ink); min-height: 48px; }
+  .more-sheet button:active { background: var(--panel); }
+  .more-sheet .danger { color: var(--bad); }
+  .more-sheet .cancel { text-align: center; color: var(--ink-3); border-top: 1px solid var(--line); border-radius: 0; margin-top: 6px; }
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .cal-body .week { width: 100%; height: 1100px; }
+  .rv-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .rv-form { order: 0; border-top: 0; border-right: 1px solid var(--line); }
+}
+@media (max-width: 900px) and (max-height: 520px) {
+  :root { --mnav-h: 50px; }
+  .bname, .stats .warn { display: none; }
+  .top { flex-wrap: nowrap; padding-top: 6px; padding-bottom: 6px; }
+  .seg.plans#plans { order: 1; flex: 1 1 auto; }
+  .stats { order: 2; }
+  .filters { padding: 6px 14px; gap: 6px; }
+  .filters > .frow { display: none; }
+  .search input, .filters-btn { height: 38px; }
+  .tabs button { padding: 6px 0; }
+  .group-h { position: static; }
+  .caltool { padding: 4px 14px; flex-wrap: nowrap; }
+  .caltool #jump, .legend { display: none; }
+  .mnav button { flex-direction: row; gap: 6px; min-height: 40px; }
+  .mnav button[aria-pressed="true"] svg { padding: 0; width: 22px; background: none; }
+  .mbadge { top: -10px; }
+}
+@media (min-width: 901px) { .sheet-scrim { display: none !important; } }
+@media (min-width: 901px) and (max-width: 2200px) {
+  .top { flex-wrap: wrap; row-gap: 8px; }
+  .stats { margin-left: auto; }
+  .seg.plans#plans { max-width: 34vw; }
+}
+@media (min-width: 901px) and (max-width: 1500px) {
+  .main { grid-template-columns: minmax(360px, 38%) minmax(0, 1fr); }
+  .caltool { flex-wrap: wrap; }
+  .legend { flex: 1 0 100%; order: 9; margin-left: 0; }
 }
 
 </style>
@@ -479,12 +713,17 @@ svg.i { width: 16px; height: 16px; flex: none; }
   <main class="main">
     <aside class="pane-list" aria-label="Classes">
       <div class="filters">
-        <div class="search">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
-          <input id="q" type="search" placeholder="Search by class name, number, class # or professor" autocomplete="off" aria-label="Search classes">
-          <kbd>/</kbd>
+        <div class="search-row">
+          <div class="search">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+            <input id="q" type="search" placeholder="Search by class name, number, class # or professor" autocomplete="off" aria-label="Search classes">
+            <kbd>/</kbd>
+          </div>
+          <button class="btn filters-btn" id="filters-btn" aria-haspopup="dialog"><svg class="i" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4h12M4.5 8h7M7 12h2"/></svg>Filters<span class="fcount" id="fcount" hidden></span></button>
         </div>
         <div class="frow"><span class="flabel">Show</span><div class="seg plans" id="f-short"></div></div>
+        <div class="fsheet" id="fsheet" role="dialog" aria-label="Filters">
+        <div class="fsheet-h"><span class="grab" aria-hidden="true"></span><b>Filters</b><button class="link" id="fs-clear">Clear all</button></div>
         <div class="frow"><span class="flabel">Type</span><div class="chips" id="f-kinds"></div></div>
         <div class="frow"><span class="flabel">Class year</span>
           <div class="seg" id="f-year"><button data-year="All">All</button><button data-year="1L">1L</button><button data-year="Upper level">Upper level</button></div>
@@ -492,7 +731,10 @@ svg.i { width: 16px; height: 16px; flex: none; }
         <div class="frow"><span class="flabel">Tags</span><div class="chips" id="f-tags"></div></div>
         <div class="cohorts" id="cohorts" hidden>The Law School registers 1Ls into sections. Preview one:
           <button class="btn sm" data-cohort="1">Section 1</button><button class="btn sm" data-cohort="2">Section 2</button><button class="btn sm" data-cohort="3">Section 3</button></div>
+        <div class="fsheet-f"><button class="btn primary tall" id="fs-done">Show classes</button></div>
+        </div>
       </div>
+      <div class="fscrim" id="fscrim" hidden></div>
       <div class="listhead">
         <div class="tabs" id="tabs"><button data-tab="all">All classes <b id="n-all"></b></button><button data-tab="added">Added <b id="n-added"></b></button></div>
         <div class="lh-right"><button class="link" id="clear-filters" hidden>Clear filters</button>
@@ -515,6 +757,25 @@ svg.i { width: 16px; height: 16px; flex: none; }
       <div class="cal-body" id="cal"></div>
     </section>
   </main>
+  <nav class="mnav" id="mnav" aria-label="Sections">
+    <button data-mpane="list" aria-pressed="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 5h12M4 10h12M4 15h8"/></svg><span>Classes</span></button>
+    <button data-mpane="cal" aria-pressed="false"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4.5" width="14" height="12" rx="2"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4" stroke-linecap="round"/></svg><span>Calendar<b class="mbadge" id="mbadge" hidden></b></span></button>
+    <button data-mact="gen-btn"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2l2 5.6 5.6 1.6-5.6 1.7L10 16.5l-2-5.6L2.4 9.2 8 7.6z"/></svg><span>Build</span></button>
+    <button data-mact="ai-btn"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 10.5l3.5 3.5L16 5.5"/></svg><span id="mnav-ai">Review</span></button>
+    <button data-mact="more"><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="5" cy="10" r="1.6"/><circle cx="10" cy="10" r="1.6"/><circle cx="15" cy="10" r="1.6"/></svg><span>More</span></button>
+  </nav>
+</div>
+<div class="scrim sheet-scrim" id="more" hidden>
+  <div class="more-sheet" role="dialog" aria-label="More actions">
+    <span class="grab" aria-hidden="true"></span>
+    <button data-mact="compare-btn">Compare plans</button>
+    <button data-mact="new-plan">New empty plan</button>
+    <button data-mact="dup-plan">Duplicate this plan</button>
+    <button data-mact="copy-reg">Copy class numbers for registration</button>
+    <button data-mact="clear-all" class="danger">Clear this plan</button>
+    <button data-mact="del-plan" class="danger">Delete this plan</button>
+    <button data-mact="close-more" class="cancel">Cancel</button>
+  </div>
 </div>
 <div class="scrim" id="modal" hidden><div class="modal" id="m-content" role="dialog" aria-modal="true" aria-labelledby="m-title" tabindex="-1"></div></div>
 <div class="scrim" id="compare" hidden>
@@ -526,7 +787,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
 <div class="scrim" id="gen" hidden>
   <div class="review" role="dialog" aria-modal="true" aria-labelledby="gen-title">
     <div class="rv-head"><div class="logo" aria-hidden="true">M</div><div><h2 id="gen-title">Build a schedule</h2><p>Set your rules. It respects your past classes, what you still need, conflicts and finals, then saves each option as a plan.</p></div><button class="x" id="gen-close" style="margin-left:auto" aria-label="Close"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
-    <div class="rv-body"><div class="rv-form" id="gen-form"></div><div class="rv-out" id="gen-out"><p class="mut">Fill in what matters to you on the left, then build. Each option becomes a new plan you can open, edit and compare.</p></div></div>
+    <div class="rv-body"><div class="rv-form" id="gen-form"></div><div class="rv-out" id="gen-out"><p class="mut">Set what matters to you, then build. Each option becomes a new plan you can open, edit and compare.</p></div></div>
   </div>
 </div>
 <div class="scrim" id="review" hidden>
@@ -981,7 +1242,7 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
   const TAGS = ["Required", "Usually spring only", "Rarely offered", "Bar subject", "Experiential", "No final exam", "Evening", "Fits my schedule"];
   function renderFilters() {
     const counts = {};
-    ALL.forEach((s) => { counts[kindKey(s)] = (counts[kindKey(s)] || 0) + 1; });
+    (state.short && state.tab === "all" && SHORTLIST.length ? ALL.filter((s) => SHORTLIST.includes(s.id)) : ALL).forEach((s) => { counts[kindKey(s)] = (counts[kindKey(s)] || 0) + 1; });
     $("#f-kinds").innerHTML = `<button class="chip" data-kind="" aria-pressed="${!state.kinds.size}">All</button>` + KIND_ORDER.map((k) => `<button class="chip" data-kind="${esc(k)}" aria-pressed="${state.kinds.has(k)}">${esc(KIND_LABEL[k])}<span class="n">${counts[k] || 0}</span></button>`).join("");
     $("#f-tags").innerHTML = TAGS.map((k) => `<button class="chip" data-tag="${esc(k)}" aria-pressed="${state.tags.has(k)}">${esc(k)}</button>`).join("");
     $("#f-short").closest(".frow").hidden = !SHORTLIST.length;
@@ -989,6 +1250,8 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
     document.querySelectorAll("#f-year button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.year === state.year));
     document.querySelectorAll("#tabs button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.tab === state.tab));
     $("#cohorts").hidden = state.year !== "1L";
+    const nf = state.kinds.size + state.tags.size + (state.year !== "All" ? 1 : 0);
+    $("#fcount").hidden = !nf; $("#fcount").textContent = nf;
   }
 
   // ---------- class list
@@ -1002,6 +1265,8 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
     else items.sort((a, b) => (state.sort === "group" ? KIND_ORDER.indexOf(kindKey(a)) - KIND_ORDER.indexOf(kindKey(b)) : 0) || a.code.localeCompare(b.code) || a.section.localeCompare(b.section) || a.title.localeCompare(b.title));
     $("#n-all").textContent = state.tab === "all" ? items.length : ALL.length;
     $("#n-added").textContent = secs.length;
+    $("#fs-done").textContent = `Show ${items.length} ${items.length === 1 ? "class" : "classes"}`;
+    $("#mbadge").hidden = !secs.length; $("#mbadge").textContent = secs.length;
     $("#clear-filters").hidden = !(state.q || state.kinds.size || state.tags.size || state.year !== "All");
     if (!items.length) {
       $("#list").innerHTML = state.tab === "added" && !secs.length
@@ -1140,6 +1405,13 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
       : `${ws.toLocaleDateString("en-US", { month: "short" })} ${ws.getDate()} - ${end.toLocaleDateString("en-US", { month: "short" })} ${end.getDate()}, 2027`;
     $("#cal-sub").textContent = weekLabel(ws);
     $("#cal").innerHTML = html;
+    if (matchMedia("(max-width: 900px)").matches) {
+      const cal = $("#cal"), cols = [...cal.querySelectorAll(".day")];
+      const i = cols.findIndex((c) => c.querySelector(".ev"));
+      const evs = [...cal.querySelectorAll(".ev")];
+      cal.scrollLeft = i > 0 ? cols[i].offsetLeft - 60 : 0;
+      cal.scrollTop = evs.length ? Math.max(0, Math.min(...evs.map((e) => e.offsetTop)) - 40) : 0;
+    }
     $("#prev").disabled = ws <= FIRST_WEEK; $("#next").disabled = ws >= LAST_WEEK;
   }
 
@@ -1432,7 +1704,7 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
       <div class="field"><span class="lbl">Already done or in progress</span><div class="checks">${doneOpts.map((o, i) => `<label><input type="checkbox" id="pf-d${i}" value="${esc(o)}"${pr.done.includes(o) ? " checked" : ""}>${esc(o.replace(" requirement", ""))}</label>`).join("")}</div></div>
       <div class="field"><span class="lbl">Classes already taken: ${(pr.taken || []).length} classes, ${takenInfo().credits} credits</span>
         <div class="taken">${(pr.taken || []).map((t, i) => `<div class="tk-row"><span class="tk-code">${esc(t.code || "-")}</span><span class="tk-t">${esc(t.title)}</span><span class="mut">${esc(t.credits || "?")} cr · ${esc(t.term || "")}</span><button class="tk-x" data-untake="${i}" aria-label="Remove ${esc(t.title)}">${ICON.xs}</button></div>`).join("") || '<p class="mut">None yet. Add the classes you have finished so the review counts them.</p>'}</div>
-        <div class="tk-add"><input id="tk-q" list="catalog" placeholder="Add a class: name or LAW number"><select id="tk-term">${["Fall 2026", "Summer 2026", "Spring 2026", "Fall 2025", "Earlier"].map((x) => `<option>${x}</option>`).join("")}</select><button class="btn sm" id="tk-add">Add</button></div>
+        <div class="tk-add"><input id="tk-q" list="catalog" placeholder="Add a past class"><select id="tk-term">${["Fall 2026", "Summer 2026", "Spring 2026", "Fall 2025", "Earlier"].map((x) => `<option>${x}</option>`).join("")}</select><button class="btn sm" id="tk-add">Add</button></div>
         <datalist id="catalog">${CATALOG.map((c) => `<option value="${esc(c.code)} ${esc(c.title)}">`).join("")}</datalist>
         <details class="tk-paste"><summary>Paste or upload a list of past classes</summary>
           <textarea id="tk-paste" placeholder="One class per line, for example:&#10;LAW 7260 Labor Law&#10;Water Law (3)"></textarea>
@@ -1512,6 +1784,7 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
     if (!selected().length) { out.innerHTML = ""; return; }
     reviewCtl = new AbortController();
     $("#rv-run").disabled = true; $("#rv-stop").hidden = false;
+    $("#rv-quick").scrollIntoView({ block: "start", behavior: "smooth" });
     out.innerHTML = '<div class="thinking"><span class="spin"></span><span id="rv-progress">Claude is reading your schedule, the professors and the requirements. This usually takes 30 to 90 seconds.</span></div>';
     try {
       const prompt = L.reviewPrompt(selected(), ALL, PROF, promptProfile(), TERM, DATA.graduation);
@@ -1685,7 +1958,7 @@ Make ${o.count} clearly different options. Reply with only JSON: {"options":[{"n
       <label class="g-chk"><input type="checkbox" id="g-finals"${o.noSameDayFinals ? " checked" : ""}>No two finals on the same day</label>
       <div class="field"><span class="lbl">How many options</span><div class="seg" id="g-count">${[1, 2, 3].map((n) => `<button data-gcount="${n}" aria-pressed="${o.count === n}">${n}</button>`).join("")}</div></div>
       <button class="btn primary tall" id="g-ai">${ICON.spark}Build with AI</button>
-      <button class="btn tall" id="g-local">Quick build (no AI)</button>
+      <button class="btn tall" id="g-local">Build options</button>
       <p class="foot-note">Options are saved as new plans so you can open, change and compare them. Quick build picks well-rated, conflict-free classes that cover what you still need.</p>`;
   }
   function readGen() {
@@ -1728,6 +2001,7 @@ Make ${o.count} clearly different options. Reply with only JSON: {"options":[{"n
     lastGen = made;
     save(); renderPlans();
     out.innerHTML = genResults(opts, made, source);
+    out.scrollIntoView({ block: "start", behavior: "smooth" });
   }
   let lastGen = [];
   function openGen() { renderGenForm(); $("#gen").hidden = false; }
@@ -1777,9 +2051,27 @@ Make ${o.count} clearly different options. Reply with only JSON: {"options":[{"n
     state.weekStart = w; state.month = Math.min(4, Math.max(0, d.getMonth()));
   };
   document.addEventListener("click", (ev) => {
-    const t = ev.target.closest("#gen-btn,#gen-close,#g-ai,#g-local,#g-compare,#copy-reg,[data-gpool],[data-gcount],#chat-send,[data-untake],#tk-add,#tk-import,#new-plan,#del-plan,[data-short],[data-plan],[data-edit-plan],#compare-btn,#cmp-close,#dup-plan,[data-add],[data-remove],[data-open],[data-close],[data-confirm-add],[data-confirm-remove],[data-kind],[data-tag],[data-year],[data-tab],[data-view],[data-cohort],[data-apply],[data-day],.row,#prev,#next,#ai-btn,#clear-all,#clear-filters,#rv-run,#rv-stop,#rv-close");
-    if (!t) { if (ev.target.classList.contains("scrim")) { closeModal(); $("#review").hidden = true; $("#compare").hidden = true; $("#gen").hidden = true; } return; }
+    const t = ev.target.closest("[data-mpane],[data-mact],#filters-btn,#fs-done,#fscrim,#fs-clear,#gen-btn,#gen-close,#g-ai,#g-local,#g-compare,#copy-reg,[data-gpool],[data-gcount],#chat-send,[data-untake],#tk-add,#tk-import,#new-plan,#del-plan,[data-short],[data-plan],[data-edit-plan],#compare-btn,#cmp-close,#dup-plan,[data-add],[data-remove],[data-open],[data-close],[data-confirm-add],[data-confirm-remove],[data-kind],[data-tag],[data-year],[data-tab],[data-view],[data-cohort],[data-apply],[data-day],.row,#prev,#next,#ai-btn,#clear-all,#clear-filters,#rv-run,#rv-stop,#rv-close");
+    if (!t) { if (ev.target.classList.contains("scrim")) { closeModal(); $("#review").hidden = true; $("#compare").hidden = true; $("#gen").hidden = true; $("#more").hidden = true; } return; }
     if (t.id === "chat-send") return sendChat();
+    if (t.dataset.mpane) { setPane(t.dataset.mpane); return; }
+    if (t.dataset.mact) {
+      const a = t.dataset.mact;
+      if ((a === "del-plan" || a === "clear-all") && !t.dataset.armed) {
+        t.dataset.armed = "1"; const label = t.textContent; t.textContent = "Tap again to confirm";
+        setTimeout(() => { delete t.dataset.armed; t.textContent = label; }, 3000); return;
+      }
+      if (t.dataset.armed) { delete t.dataset.armed; t.textContent = a === "del-plan" ? "Delete this plan" : "Clear this plan"; }
+      $("#more").hidden = true;
+      if (a === "more") { if (state.plans.length < 2) $("#more [data-mact=del-plan]").hidden = true; else $("#more [data-mact=del-plan]").hidden = false; $("#more").hidden = false; return; }
+      if (a === "close-more") return;
+      if (a === "del-plan" || a === "clear-all") { const el = document.getElementById(a); if (el) { el.click(); el.click(); } return; }
+      const el = document.getElementById(a); if (el) el.click();
+      return;
+    }
+    if (t.id === "filters-btn") { document.body.classList.add("filters-open"); $("#fscrim").hidden = false; return; }
+    if (t.id === "fs-done" || t.id === "fscrim") { document.body.classList.remove("filters-open"); $("#fscrim").hidden = true; return; }
+    if (t.id === "fs-clear") { state.kinds.clear(); state.tags.clear(); state.year = "All"; return renderFilters(), renderList(); }
     if (t.id === "gen-btn") return openGen();
     if (t.id === "gen-close") { $("#gen").hidden = true; return; }
     if (t.id === "g-ai") return genCtl ? genCtl.abort() : runGen(true);
@@ -1855,7 +2147,7 @@ Make ${o.count} clearly different options. Reply with only JSON: {"options":[{"n
   document.addEventListener("keydown", (ev) => {
     const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement && document.activeElement.tagName);
     if (ev.key === "Enter" && !ev.shiftKey && document.activeElement && document.activeElement.id === "chat-q") { ev.preventDefault(); sendChat(); return; }
-    if (ev.key === "Escape") { if (!$("#modal").hidden) return closeModal(); $("#review").hidden = true; $("#compare").hidden = true; $("#gen").hidden = true; return; }
+    if (ev.key === "Escape") { if (!$("#modal").hidden) return closeModal(); $("#review").hidden = true; $("#compare").hidden = true; $("#gen").hidden = true; $("#more").hidden = true; document.body.classList.remove("filters-open"); $("#fscrim").hidden = true; return; }
     if (ev.key === "/" && !typing) { ev.preventDefault(); $("#q").focus(); return; }
     if (ev.key === "Enter" && document.activeElement && (document.activeElement.classList.contains("row") || document.activeElement.classList.contains("lg"))) {
       const el = document.activeElement; openModal(el.dataset.id || el.dataset.open);
@@ -1870,6 +2162,23 @@ Make ${o.count} clearly different options. Reply with only JSON: {"options":[{"n
   document.addEventListener("change", (e) => { if (e.target.id === "tk-file" && e.target.files[0]) e.target.files[0].text().then((txt) => { $("#tk-paste").value = txt; }); });
   $("#sort").addEventListener("change", (e) => { state.sort = e.target.value; renderList(); });
   $("#jump").addEventListener("change", (e) => { if (!e.target.value) return; goWeekOf(L.parseISO(e.target.value)); e.target.value = ""; renderCal(); });
+
+  // ---------- phone layout: one pane at a time, chosen from the bottom bar
+  function setPane(p) {
+    document.body.dataset.mpane = p;
+    document.querySelectorAll("#mnav [data-mpane]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.mpane === p));
+    if (p === "cal") renderCal();
+  }
+  document.body.dataset.mpane = "list";
+  $("#mnav-ai").textContent = /Schedule check/.test($("#ai-btn").textContent) ? "Check" : "Review";
+  // a swipe down on a sheet's top edge closes it
+  let swipeY = null;
+  document.addEventListener("touchstart", (e) => { const h = e.target.closest(".fsheet-h, .mh, .rv-head, .more-sheet"); swipeY = h ? e.touches[0].clientY : null; }, { passive: true });
+  document.addEventListener("touchend", (e) => {
+    if (swipeY === null) return;
+    if (e.changedTouches[0].clientY - swipeY > 70) { document.body.classList.remove("filters-open"); $("#fscrim").hidden = true; closeModal(); ["#review", "#compare", "#gen", "#more"].forEach((s) => { $(s).hidden = true; }); }
+    swipeY = null;
+  }, { passive: true });
 
   renderAll();
 })();
