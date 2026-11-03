@@ -693,6 +693,101 @@ svg.i { width: 16px; height: 16px; flex: none; }
   .legend { flex: 1 0 100%; order: 9; margin-left: 0; }
 }
 
+/* ---------- phone fit (from a real Android phone review): one slim top row, a fixed 5-day week like Google Calendar */
+@media (max-width: 900px) {
+  .top { flex-wrap: nowrap; gap: 10px; padding-top: 8px; padding-bottom: 8px; }
+  .bname { display: none; }
+  .logo { width: 30px; height: 30px; font-size: 15px; flex: none; }
+  .seg.plans#plans { order: 1; flex: 1 1 auto; min-width: 0; border: 0; padding: 0; background: transparent; }
+  .seg.plans#plans button { height: 36px; padding: 0 12px; }
+  .stats { order: 2; flex: none; }
+  .stats .warn { height: 28px; padding: 0 8px; font-size: 0; gap: 0; }
+  .stats .warn svg { width: 15px; height: 15px; }
+  .stats .warn::after { content: attr(data-n); font-size: 13px; font-weight: 700; margin-left: 4px; }
+  .stats .warn .dotsep { display: none; }
+  .stat .num { font-size: 17px; }
+
+  /* calendar toolbar: one row */
+  .caltool { flex-wrap: nowrap; gap: 4px; padding: 6px 10px; min-height: 0; }
+  .caltool .navs { order: 1; gap: 0; }
+  .caltool .icon-btn { width: 38px; height: 38px; }
+  .ctitle { order: 2; font-size: 15.5px; flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .caltool .seg.view { order: 3; padding: 2px; }
+  .caltool .seg.view button { height: 34px; padding: 0 10px; font-size: 13px; }
+  .caltool #jump { order: 4; flex: none; width: 40px; height: 38px; padding: 0; color: transparent; border-radius: 8px;
+    background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23003366' stroke-width='1.7' stroke-linecap='round'%3E%3Crect x='3' y='4.5' width='14' height='12' rx='2'/%3E%3Cpath d='M3 8.5h14M7 2.5v4M13 2.5v4M8 12.5h4'/%3E%3C/svg%3E") center / 20px no-repeat; appearance: none; -webkit-appearance: none; }
+  .caltool #jump option { color: var(--ink); }
+  body[data-view="week"] .legend { display: none; }
+  .legend { order: 6; }
+
+  /* week: every weekday fits the width, the day fits the height */
+  .cal-body { overflow: hidden; }
+  .cal-body .week { position: absolute; inset: 0; width: auto; height: auto; }
+  .cal-body .wk-head, .cal-body .wk-allday { position: static; }
+  .wk-head, .wk-allday, .wk-grid { grid-template-columns: 30px repeat(var(--cols), minmax(0, 1fr)); }
+  .wk-head > :first-child, .wk-allday > :first-child, .wk-grid > .gut { position: static; }
+  .dh { height: 40px; padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 0; }
+  .dn { font-size: 10px; letter-spacing: .04em; }
+  .dd { font-size: 16px; line-height: 1.1; }
+  .dh.first .dd { width: 24px; height: 24px; font-size: 13px; }
+  .wk-allday > div { min-height: 0; padding: 2px 1px; gap: 2px; }
+  .wk-allday > div:first-child { font-size: 0; padding: 0; }
+  .wk-allday .kd { font-size: 9px; padding: 1px 3px; border-radius: 4px; }
+  .gut span { font-size: 9px; right: 3px; }
+  .gut span:first-child { transform: translateY(2px); }
+  .day .off-label { font-size: 10px; writing-mode: vertical-rl; transform: rotate(180deg); top: 30%; left: 50%; right: auto; margin-left: -7px; }
+  .ev { padding: 3px 4px; border-left-width: 3px; border-radius: 5px; }
+  .ev .et { font-size: 10.5px; line-height: 1.15; padding-right: 0; overflow-wrap: normal; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .ev .em { font-size: 9.5px; margin-top: 1px; white-space: nowrap; overflow: hidden; }
+  .ev.short .et { -webkit-line-clamp: 2; }
+  .em2, .cbadge { display: none !important; }
+  .ev.clash .et { font-size: 9.5px; -webkit-line-clamp: 4; }
+  .ev.clash { padding: 2px 3px; }
+  .ev .req-star { top: 2px; right: 2px; width: 9px; height: 9px; }
+  .ev .req-star svg { width: 9px; height: 9px; }
+  .ev.exam .et::before { content: "Final"; font-size: 8.5px; margin-bottom: 0; }
+
+  /* class list: tighter cards */
+  .row { padding: 10px 12px; gap: 2px 10px; }
+  .rtop { margin-bottom: 1px; }
+  .rtitle { font-size: 15px; }
+  .rmeta { font-size: 12.5px; }
+  .add { height: 36px; min-width: 70px; padding: 0 10px; font-size: 13px; }
+  .tags { gap: 4px; margin-top: 4px; }
+  .tag { height: 21px; font-size: 11.5px; padding: 0 6px; }
+  .cr { font-size: 12px; }
+  .listhead .tabs button { padding: 9px 0 8px; font-size: 13.5px; }
+  .lh-right .select { font-size: 13.5px !important; }
+  .filters { padding: 8px 12px 6px; gap: 8px; }
+  .search input, .filters-btn { height: 42px; }
+  .list-scroll { padding: 8px 12px 20px; }
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .cal-body .week { height: auto; }
+  .ev .et { font-size: 12px; }
+  .ev .em { font-size: 11px; }
+  .wk-head, .wk-allday, .wk-grid { grid-template-columns: 40px repeat(var(--cols), minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .wk-grid > .gut { position: relative; }
+  #new-plan { display: none !important; }
+  body[data-view="month"] .caltool { flex-wrap: wrap; }
+  body[data-view="month"] .legend { display: flex; flex: 1 0 100%; order: 6; overflow-x: auto; flex-wrap: nowrap; margin: 2px 0 0; }
+  .ev.clash { box-shadow: -2px 0 0 #fff, 0 1px 4px rgba(16, 27, 45, .18); }
+}
+
+@media (max-width: 380px) {
+  .caltool { gap: 2px; padding: 6px 6px; }
+  .caltool .icon-btn { width: 34px; height: 38px; }
+  .ctitle { font-size: 14.5px; }
+  .caltool .seg.view button { padding: 0 8px; font-size: 12.5px; }
+  .mnav button { font-size: 11px; }
+  .seg.plans#plans button { padding: 0 9px; }
+}
+
+@media (max-width: 599px) { .gut span { white-space: nowrap; font-size: 8.5px; right: 2px; letter-spacing: -.02em; } }
+
 </style>
 <div class="app">
   <header class="top">
@@ -1234,7 +1329,7 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
     if (ex.sameDay.length) warns.push(`${ex.sameDay.length} exam conflict${ex.sameDay.length > 1 ? "s" : ""}`);
     $("#stats").innerHTML = `
       <span class="stat${over ? " over" : ""}"><span class="num">${esc(w.credits)}</span>credits picked<span class="dotsep"></span><span class="num2">${secs.length}</span>classes<span class="dotsep"></span><span class="num2">~${w.hoursPerWeek}</span>hours a week</span>
-      ${warns.length ? `<span class="warn">${ICON.warn.replace("<svg", '<svg class="i"')}${warns.join('<span class="dotsep"></span>')}</span>` : ""}
+      ${warns.length ? `<span class="warn" data-n="${cf.length + ex.sameDay.length}">${ICON.warn.replace("<svg", '<svg class="i"')}${warns.join('<span class="dotsep"></span>')}</span>` : ""}
       ${!warns.length && ex.backToBack.length ? `<span class="warn amber">${ex.backToBack.length} back-to-back finals</span>` : ""}`;
   }
 
@@ -1365,6 +1460,7 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
     let head = "<div></div>", allday = "<div>All day</div>", grid = '<div class="gut">';
     for (let h = 8; h <= 21; h++) grid += `<span style="top:${pct(h * 60)}%">${h === 12 ? "12 pm" : h > 12 ? h - 12 + " pm" : h + " am"}</span>`;
     grid += "</div>";
+    const phone = !compact && matchMedia("(max-width: 599px)").matches;
     for (const d of days) {
       const di = L.iso(d);
       const off = L.noClassLabel(TERM, di) || (di === TERM.studyDay ? "Study day" : "");
@@ -1383,7 +1479,7 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
         const w = 100 / e.cols;
         const short = compact || e.end - e.start < 76;
         const instr = initialName(e.s.instructors[0] || "");
-        col += `<div class="ev${e.exam ? " exam" : ""}${e.clash ? " clash" : ""}${short ? " short" : ""}" data-open="${esc(e.s.id)}" style="--c:${colorFn(e.s.id)};top:calc(${top}% + 1px);height:calc(${hgt}% - 2px);left:calc(${e.col * w}% + ${compact ? 3 : 6}px);width:calc(${w}% - ${compact ? 6 : 10}px)" title="${esc(e.s.title)}">
+        col += `<div class="ev${e.exam ? " exam" : ""}${e.clash ? " clash" : ""}${short ? " short" : ""}" data-open="${esc(e.s.id)}" style="--c:${colorFn(e.s.id)};top:calc(${top}% + 1px);height:calc(${hgt}% - 2px);${phone && e.cols > 1 ? `left:${2 + e.col * 9}px;right:2px;z-index:${e.col + 1}` : `left:calc(${e.col * w}% + ${compact ? 3 : 6}px);width:calc(${w}% - ${compact ? 6 : 10}px)`}" title="${esc(e.s.title)}">
           ${e.s.requirements.includes("Required") ? `<span class="req-star" title="Required for graduation">${ICON.star}</span>` : meetsReq(e.s) ? `<span class="req-star outline" title="Meets a graduation requirement">${ICON.star}</span>` : ""}
           <div class="et">${esc(shortTitle(e.s.title))}</div>
           <div class="em">${e.exam ? "Starts 9:00 am" : L.fmtRange(minToHHMM(e.start), minToHHMM(e.end))}</div>
@@ -1401,11 +1497,11 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
     const { days, html } = weekGrid(ws, selected(), (id) => colorOf(id), false);
     const end = days[days.length - 1];
     $("#cal-title").textContent = ws.getMonth() === end.getMonth()
-      ? `${ws.toLocaleDateString("en-US", { month: "short" })} ${ws.getDate()} - ${end.getDate()}, 2027`
-      : `${ws.toLocaleDateString("en-US", { month: "short" })} ${ws.getDate()} - ${end.toLocaleDateString("en-US", { month: "short" })} ${end.getDate()}, 2027`;
+      ? `${ws.toLocaleDateString("en-US", { month: "short" })} ${ws.getDate()} - ${end.getDate()}${innerWidth < 600 ? "" : ", 2027"}`
+      : `${ws.toLocaleDateString("en-US", { month: "short" })} ${ws.getDate()} - ${end.toLocaleDateString("en-US", { month: "short" })} ${end.getDate()}${innerWidth < 600 ? "" : ", 2027"}`;
     $("#cal-sub").textContent = weekLabel(ws);
     $("#cal").innerHTML = html;
-    if (matchMedia("(max-width: 900px)").matches) {
+    if (false) {
       const cal = $("#cal"), cols = [...cal.querySelectorAll(".day")];
       const i = cols.findIndex((c) => c.querySelector(".ev"));
       const evs = [...cal.querySelectorAll(".ev")];
@@ -1490,6 +1586,7 @@ Use at most 5 risks, 4 mustConsider and 3 swaps. Plain hyphens only.`;
 
   function renderCal() {
     document.querySelectorAll("#view button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.view === state.view));
+    document.body.dataset.view = state.view;
     state.view === "week" ? renderWeek() : renderMonth();
   }
 
